@@ -1,18 +1,31 @@
 {
-  "name": "@emurgo/cip14-js",
+  "name": "@yoroi-classic/cip14-js",
   "version": "3.0.1",
   "description": "A Javascript library reference implementation for CIP14",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "npm run clean && tsc && npm run flowgen && npm run copy-misc",
+    "build": "npm run clean && tsc && npm run flowgen",
     "clean": "rm -rf ./dist/",
-    "copy-misc": "cp package.json dist/ && cp README.md dist/",
     "eslint": "eslint ./index.ts ./tests/index.test.ts",
     "flowgen": "flowgen ./dist/index.d.ts --no-inexact --add-flow-header -o dist/index.js.flow",
-    "npm-publish": "npm run verify && npm run build && cd dist && npm publish --access public && cd ..",
+    "prepare": "npm run build",
     "test": "tsc --noEmit && jest",
-    "verify": "npm run eslint && npm run test"
+    "test:package": "npm run build && node ./tests/package-smoke.js",
+    "verify": "npm run eslint && npm run test && npm run test:package"
   },
   "husky": {
     "hooks": {
@@ -22,10 +35,10 @@
   "license": "Apache-2.0 OR MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Emurgo/cip14-js.git"
+    "url": "git+https://github.com/yoroi-classic/cip14-js.git"
   },
-  "author": "EMURGO",
-  "homepage": "https://github.com/Emurgo/cip14-js#readme",
+  "author": "Yoroi Classic Contributors",
+  "homepage": "https://github.com/yoroi-classic/cip14-js#readme",
   "dependencies": {
     "bech32": "2.0.0",
     "blake2b": "2.1.3"
