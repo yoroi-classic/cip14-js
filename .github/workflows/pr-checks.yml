@@ -25,9 +25,6 @@ jobs:
       - name: install
         run: |
           npm install
-      - name: run eslint
+      - name: run verify
         run: |
-          npm run eslint
-      - name: run test
-        run: |
-          npm run test
+          npm run verify
