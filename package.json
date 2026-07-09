@@ -2,6 +2,7 @@
   "name": "@yoroi-classic/cip14-js",
   "version": "3.0.1",
   "description": "A Javascript library reference implementation for CIP14",
+  "packageManager": "npm@10.9.7",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -22,10 +23,11 @@
     "clean": "rm -rf ./dist/",
     "eslint": "eslint ./index.ts ./tests/index.test.ts",
     "flowgen": "flowgen ./dist/index.d.ts --no-inexact --add-flow-header -o dist/index.js.flow",
+    "pack:dry-run": "npm pack --dry-run",
     "prepare": "npm run build",
     "test": "tsc --noEmit && jest",
     "test:package": "npm run build && node ./tests/package-smoke.js",
-    "verify": "npm run eslint && npm run test && npm run test:package"
+    "verify": "npm run eslint && npm run test && npm run test:package && npm run pack:dry-run"
   },
   "husky": {
     "hooks": {
