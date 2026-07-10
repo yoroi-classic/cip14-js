@@ -1,10 +1,8 @@
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-      "noEmit": true,
-    },
-    "include": [
-      "index.ts",
-      "tests/**/*",
-    ],
-  }
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node", "blake2b"]
+  },
+  "include": ["index.ts"]
+}
