@@ -15,7 +15,7 @@ export default tseslint.config(
     ],
     languageOptions: {
       parserOptions: {
-        project: "./tsconfig.typecheck.json",
+        project: ["./tsconfig.typecheck.json", "./tsconfig.test.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       globals: {
@@ -28,7 +28,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ["tests/**/*.test.ts"],
+    files: ["tests/**/*.{test,spec}.ts"],
     ...jest.configs["flat/recommended"],
     languageOptions: {
       ...jest.configs["flat/recommended"].languageOptions,

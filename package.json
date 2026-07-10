@@ -3,6 +3,10 @@
   "version": "3.0.1",
   "description": "A Javascript library reference implementation for CIP14",
   "packageManager": "npm@10.9.7",
+  "engines": {
+    "node": ">=22.13.0 <23",
+    "npm": "10.9.7"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -21,13 +25,13 @@
   "scripts": {
     "build": "npm run clean && tsc -p tsconfig.json && npm run flowgen",
     "clean": "rm -rf ./dist/",
-    "eslint": "eslint ./index.ts ./tests/index.test.ts ./tests/package-smoke.js",
+    "eslint": "eslint ./index.ts \"./tests/**/*.{test,spec}.ts\" ./tests/package-smoke.js",
     "flowgen": "flowgen ./dist/index.d.ts --no-inexact --add-flow-header -o dist/index.js.flow",
     "pack:dry-run": "npm pack --dry-run",
     "prepare": "npm run build",
     "test": "npm run typecheck && jest",
     "test:package": "npm run build && node ./tests/package-smoke.js",
-    "typecheck": "tsc -p tsconfig.typecheck.json",
+    "typecheck": "tsc -p tsconfig.typecheck.json && tsc -p tsconfig.test.json",
     "verify": "npm run eslint && npm run test && npm run test:package && npm run pack:dry-run"
   },
   "husky": {
